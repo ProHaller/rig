@@ -47,6 +47,7 @@ use crate::{
 ///     .build()
 ///     .await?;
 /// ```
+#[derive(Debug)]
 pub struct EmbeddingsBuilder<M: EmbeddingModel, T: Embed> {
     model: M,
     documents: Vec<(T, Vec<String>)>,
