@@ -103,7 +103,7 @@ impl<M: EmbeddingModel, T: Embed + Send> EmbeddingsBuilder<M, T> {
         let mut embeddings = stream::iter(texts.into_iter())
             // Merge the texts of each document into a single list of texts.
             .flat_map(|(i, texts)| stream::iter(texts.into_iter().map(move |text| (i, text))))
-            // Chunk them into batches. Each batch size is at most the embedding API limit per request.
+            // Chunk them into batches. Each batch size is at most the embedding API documents number limit per request.
             .chunks(M::MAX_DOCUMENTS)
             // Generate the embeddings for each batch.
             .map(|text| async {
